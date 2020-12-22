@@ -1,0 +1,85 @@
+@font-face {
+    font-family: 'invadersregular';
+    src: url('./SpaceInvaders/webfontkit-20200914-035828/invaders-6ry1-webfont.woff2') format('woff2'),
+         url('./SpaceInvaders/webfontkit-20200914-035828/invaders-6ry1-webfont.woff') format('woff'),
+         url('./SpaceInvaders/Invaders-6RY1.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+body{
+    background-color: black;
+    color: beige;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1{
+    font-family: 'invadersregular', Arial, Helvetica, sans-serif;
+    font-size: 150px;
+    margin: 10px 20px;
+}
+
+h1, h2, h3, p {
+    text-align: center;
+}
+
+p {
+    font-size: 15px;
+}
+
+button {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: 20px;
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 5px;
+    border: solid beige 2px;
+    color: beige;
+    background-color: black;
+    cursor: pointer;
+}
+
+.grid{
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    border: solid 1px;
+    width: 300px;
+    height: 300px;
+}
+
+.grid div{
+    width: 20px;
+    height: 20px;
+}
+
+
+
+.shooter:before {
+    font-family: 'invadersregular', Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    content: "1";
+    color: beige;
+ }
+
+
+
+.invader:before {
+    font-family: 'invadersregular', Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    content: "P";
+    color: beige;
+ }
+
+.boom{
+    background-color: red;
+}
+
+.laser{
+    background-color: orange;
+}
