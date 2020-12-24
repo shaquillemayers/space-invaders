@@ -62,9 +62,9 @@ button {
 
 .shooter:before {
     font-family: 'invadersregular', Arial, Helvetica, sans-serif;
-    font-size: 15px;
+    font-size: 16px;
     content: "1";
-    color: beige;
+    color: greenyellow;
  }
 
 
@@ -80,6 +80,16 @@ button {
     background-color: red;
 }
 
-.laser{
-    background-color: orange;
+.laser:after {
+    font-family: Arial, Helvetica, sans-serif;
+    color: greenyellow;
+    content: "|";
+    background-color: greenyellow;
+}
+
+.laser::before {
+    font-family: Arial, Helvetica, sans-serif;
+    color: greenyellow;
+    content: "...";
+    visibility: hidden;
 }
