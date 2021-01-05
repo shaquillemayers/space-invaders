@@ -1,4 +1,4 @@
-This game can be accessed via: shaqs-space-invaders-game.surge.sh
+This game can be accessed via: https://shaqs-space-invaders-game.surge.sh/
 
 This Space Invaders game was initially part of an Ania Kubów YouTube walkthrough, which can be found at https://www.youtube.com/watch?v=kSt2_YZzCec&ab_channel=AniaKub%C3%B3w%23JavaScriptGames
 
