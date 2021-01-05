@@ -24,6 +24,7 @@ playButton.addEventListener('click', function SpaceInvaders(){
         invaderSpeed = 300
     }
     let invaderId;
+    console.log(invaderSpeed);
 
     
 
@@ -52,6 +53,7 @@ playButton.addEventListener('click', function SpaceInvaders(){
         resetVariables();
         invaderSpeed = 300;
         result = 0;
+        level = 2;
         resultDisplay.textContent = `Score:`;
 
        if(currentShooterIndex){
@@ -73,7 +75,7 @@ playButton.addEventListener('click', function SpaceInvaders(){
         let incrementLevelId;
         resetVariables();
         resultDisplay.textContent = `Score: ${result}`;
-        invaderSpeed === undefined ? invaderSpeed = 300 : invaderSpeed -= 50
+        invaderSpeed === undefined ? invaderSpeed = 300 : invaderSpeed -= 25
         
 
        if(currentShooterIndex){
@@ -170,7 +172,7 @@ playButton.addEventListener('click', function SpaceInvaders(){
 
             // on loss or victory, play again will clear the game and restart after the set number of seconds.
 
-            playAgainId = setTimeout(playAgain, 2000);
+            playAgainId = setTimeout(playAgain, 3000);
         }
 
         //decide game over - invader hits bottom
@@ -181,7 +183,7 @@ playButton.addEventListener('click', function SpaceInvaders(){
             clearInterval(invaderId);
 
             
-            playAgainId = setTimeout(playAgain, 2000);
+            playAgainId = setTimeout(playAgain, 3000);
             }
         }
 
@@ -192,7 +194,7 @@ playButton.addEventListener('click', function SpaceInvaders(){
             playButton.textContent = `Start Level ${level}`;
             clearInterval(invaderId);
 
-
+        
             incrementLevelId = setTimeout(incrementLevel, 2000);
             
         }
@@ -242,11 +244,9 @@ playButton.addEventListener('click', function SpaceInvaders(){
                 laserId = setInterval(moveLaser, 100);
                 break;
         }  
-        console.log(result);
     }
-
+        
     document.addEventListener('keydown', shoot);
-    
 });
 
 
