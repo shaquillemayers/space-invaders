@@ -16,7 +16,6 @@ const highScoreDisplay = document.getElementById("high-score");
 let highScore = localStorage.getItem("High Score");
 if (highScore) {
   highScoreDisplay.textContent = `High Score: ${highScore}`;
-  log(highScore);
 }
 
 // localStorage.removeItem("High Score");
@@ -38,7 +37,6 @@ playButton.addEventListener("click", function SpaceInvaders() {
   log(highScore);
   if (highScore) {
     highScoreDisplay.textContent = `High Score: ${highScore}`;
-    log(highScore);
   }
 
   let width = 15;

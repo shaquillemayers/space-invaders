@@ -12,6 +12,10 @@ I also altered the code so that it would work on the click of the play button as
 
 This project was created via JavaScript, HTML & CSS.
 
+I later added mobile capabilities to this project.
+
 ## Future Adjustments
 
 In future, an additional feature I may add is a highscore, which would require each taking player's details and keeping track of the three highest scores over a set time period.
+
+Note: A high score has now been added!

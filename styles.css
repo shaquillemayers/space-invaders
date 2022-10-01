@@ -23,7 +23,6 @@ body {
   color: beige;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   height: 100vh;
-  overflow: hidden;
 }
 
 h1 {
@@ -150,13 +149,6 @@ button {
 
   .mobile {
     display: block;
-  }
-}
-
-/* small to medium screens, orientation landscape overflow: hidden; */
-@media screen and (max-height: 685px) and (orientation: landscape) {
-  body {
-    overflow: auto;
   }
 }
 
