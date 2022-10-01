@@ -1,18 +1,46 @@
+/* 
+  Future adjustments:
+
+    High score for everyone!
+*/
+
+// Log fn
+const log = (x) => console.log(x);
+
+const body = document.querySelector("body");
 const playButton = document.querySelector(".play");
 // const resetButton = document.querySelector('#reset');
 
-const log = (x) => console.log(x);
+// display high score if it exists
+const highScoreDisplay = document.getElementById("high-score");
+let highScore = localStorage.getItem("High Score");
+if (highScore) {
+  highScoreDisplay.textContent = `High Score: ${highScore}`;
+  log(highScore);
+}
+
+// localStorage.removeItem("High Score");
 
 let invaderSpeed;
 let result = 0;
 let level = 2;
 
+// Space Invaders fn
 playButton.addEventListener("click", function SpaceInvaders() {
   playButton.removeEventListener("click", SpaceInvaders);
   playButton.textContent = "SHOOT!";
 
   const squares = document.querySelectorAll(".grid div");
   const resultDisplay = document.querySelector("#result");
+  resultDisplay.textContent = `Score: ${result}`;
+
+  highScore = localStorage.getItem("High Score");
+  log(highScore);
+  if (highScore) {
+    highScoreDisplay.textContent = `High Score: ${highScore}`;
+    log(highScore);
+  }
+
   let width = 15;
   let currentShooterIndex = 202;
   let currentInvaderIndex = 0;
@@ -26,7 +54,7 @@ playButton.addEventListener("click", function SpaceInvaders() {
   // Reset logic
 
   function resetVariables() {
-    //list of all the variables with original attributes here
+    // list of all the variables with original attributes here
 
     if (currentShooterIndex) {
       squares.forEach((item) =>
@@ -84,22 +112,22 @@ playButton.addEventListener("click", function SpaceInvaders() {
     clearTimeout(incrementLevelId);
   }
 
-  //define the invaders
+  // define the invaders
 
   const alienInvaders = [
     0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 30,
     31, 32, 33, 34, 35, 36, 37, 38, 39,
   ];
 
-  //draw the invaders
+  // draw the invaders
   alienInvaders.forEach((invader) => {
     squares[currentInvaderIndex + invader].classList.add("invader");
   });
 
-  //draw the shooter
+  // draw the shooter
   squares[currentShooterIndex].classList.add("shooter");
 
-  //move shooter along a line
+  // move shooter along a line
   // arrows to move shooter on mobile
   const leftArrow = document.getElementById("left-arrow");
   const rightArrow = document.getElementById("right-arrow");
@@ -113,7 +141,7 @@ playButton.addEventListener("click", function SpaceInvaders() {
 
     squares[currentShooterIndex].classList.remove("shooter");
 
-    if (screen.width > 1024) {
+    if (body.offsetWidth > 1024) {
       switch (e.keyCode) {
         case 37:
           if (currentShooterIndex % width !== 0) currentShooterIndex -= 1;
@@ -143,13 +171,11 @@ playButton.addEventListener("click", function SpaceInvaders() {
     squares[currentShooterIndex].classList.add("shooter");
   }
 
-  if (screen.width > 1024) {
-    document.addEventListener("keydown", moveShooter);
-  } else {
-    document.addEventListener("click", moveShooter);
-  }
+  body.offsetWidth > 1024
+    ? document.addEventListener("keydown", moveShooter)
+    : document.addEventListener("click", moveShooter);
 
-  //move alien invaders
+  // move alien invaders
   invaderId = setInterval(moveInvaders, invaderSpeed);
 
   function moveInvaders() {
@@ -185,38 +211,48 @@ playButton.addEventListener("click", function SpaceInvaders() {
       squares[currentShooterIndex].classList.add("boom");
       clearInterval(invaderId);
 
+      // Set high score
+      if (result > highScore) {
+        localStorage.setItem("High Score", result);
+      }
+
       // on loss or victory, play again will clear the game and restart after the set number of seconds.
 
       playAgainId = setTimeout(playAgain, 3000);
     }
 
-    //decide game over - invader hits bottom
+    // decide game over - invader hits bottom
     for (let i = 0; i <= alienInvaders.length - 1; i++) {
       if (alienInvaders[i] > squares.length - (width - 1)) {
         resultDisplay.textContent = "Game Over";
         playButton.textContent = "Play Again";
         clearInterval(invaderId);
 
+        // Set high score
+        if (result > highScore) {
+          localStorage.setItem("High Score", result);
+        }
+
         playAgainId = setTimeout(playAgain, 3000);
       }
     }
 
-    //win logic
+    // win logic
 
     if (alienInvadersTakenDown.length === alienInvaders.length) {
       resultDisplay.textContent = "Keep Going!";
-      playButton.textContent = `Start Level ${level}`;
+      playButton.textContent = `Start level ${level}`;
       clearInterval(invaderId);
 
       incrementLevelId = setTimeout(incrementLevel, 2000);
     }
   }
 
-  //shoot at aliens
+  // shoot at aliens
   function shoot(e) {
     let laserId;
     let currentLaserIndex = currentShooterIndex;
-    //move the laser from the shooter to the alien invader
+    // move the laser from the shooter to the alien invader
     function moveLaser() {
       if (currentShooterIndex === undefined || currentShooterIndex === null) {
         return;
@@ -252,7 +288,8 @@ playButton.addEventListener("click", function SpaceInvaders() {
     }
 
     // space bar for large screens, shoot buttons for small-medium screens
-    if (screen.width > 1024) {
+
+    if (body.offsetWidth > 1024) {
       switch (e.keyCode) {
         case 32:
           laserId = setInterval(moveLaser, 100);
@@ -267,9 +304,8 @@ playButton.addEventListener("click", function SpaceInvaders() {
     }
   }
 
-  if (screen.width > 1024) {
-    document.addEventListener("keydown", shoot);
-  } else {
-    playButton.addEventListener("click", shoot);
-  }
+  // activate game all screen sizes
+  body.offsetWidth > 1024
+    ? document.addEventListener("keydown", shoot)
+    : playButton.addEventListener("click", shoot);
 });
