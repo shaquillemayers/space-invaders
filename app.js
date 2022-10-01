@@ -34,7 +34,6 @@ playButton.addEventListener("click", function SpaceInvaders() {
   resultDisplay.textContent = `Score: ${result}`;
 
   highScore = localStorage.getItem("High Score");
-  log(highScore);
   if (highScore) {
     highScoreDisplay.textContent = `High Score: ${highScore}`;
   }
